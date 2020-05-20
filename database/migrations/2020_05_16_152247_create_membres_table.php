@@ -18,10 +18,10 @@ class CreateMembresTable extends Migration
             $table->bigInteger('user_id');
             $table->string('civilite', 100);
             $table->string('noms', 100);
-            $table->string('prenoms', 100);
+            $table->string('prenoms', 100)->nullable();
             $table->string('code_postal', 100)->nullable();
             $table->string('telephone', 100);
-            $table->string('denomination', 100)->nullable();
+            $table->string('denomination_social', 100)->nullable();
             $table->string('structure_juridique', 100)->nullable();
             $table->double('valorisation_entreprise', 15, 8)->nullable();
             $table->double('capital_social', 15, 8)->nullable();

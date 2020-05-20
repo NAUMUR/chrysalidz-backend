@@ -7,79 +7,18 @@ use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+   public function voteProjet(Request $request){
+        $vote = new vote();
+        $vote->user_id = $request->user_id;
+        $vote->projet_id = $request->projet_id;
+        $vote->note = $request->note;
+        $vote->commentaire = $request->commentaire;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function show(vote $vote)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(vote $vote)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, vote $vote)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\vote  $vote
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(vote $vote)
-    {
-        //
-    }
+        $vote->save();
+        if ($vote->save()) {
+            return response()->json(array('message' => 'vote pris en compte', 'success' => false, 401));
+        } else {
+            return response()->json(array('message' => 'Erreur dans d\'enregistrement', 'success' => false, 401));
+        }
+   }
 }

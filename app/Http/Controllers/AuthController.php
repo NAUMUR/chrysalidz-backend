@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\User;
 use Carbon\Carbon;
@@ -19,9 +19,7 @@ class AuthController extends Controller
         ]);
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+            return response()->json(array('message' => 'non authorisé', 'statu' => false), 401);
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -48,9 +46,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
-        return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
+        return response()->json(array('message' => 'Successfully created user!','statu' => true), 200);
     }
     public function logout(Request $request)
     {

@@ -20,7 +20,7 @@ class CreateProjetsTable extends Migration
             $table->string('description', 255);
             $table->double('montant_projet', 15, 8)->nullable();
             $table->boolean('publié')->nullable()->default(false);
-            $table->double('note_eligibilité', 15, 8);
+            $table->double('note_eligibilité', 15, 8)->nullable();
             $table->foreign('categorie_projet_id')->references('id')->on('categorie_projets')->onDelete('cascade');
             $table->timestamps();
         });
