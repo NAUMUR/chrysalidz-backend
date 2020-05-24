@@ -47,7 +47,7 @@ class MembreController extends Controller
                 $ressource->type_ressource_id = $request->type_ressource_id;
                 $ressource->denomination = $request->denomination;
                 $ressource->path = $request->path;
-                $projet->save();
+                $ressource->save();
 
                 $soumission = new soumission();
 
@@ -55,13 +55,13 @@ class MembreController extends Controller
                 $soumission->projet_id = $projet_id;
                 $soumission->save();
 
-                return response()->json(array('message' => 'Projet initier en attente de valition', 'success' => true, 200));
+                return response()->json(array('message' => 'votre projet a été soumis avec succes, nous vous contacterons apres étude ', 'success' => true, 200));
             }else {
-                return response()->json(array('message' => 'Erreur dans l\'initiation du projet', 'success' => false, 401));
+                return response()->json(array('message' => 'une erreur est survenue lors de la soumission du projet, veuillez réessayer', 'success' => false, 401));
             }
 
         } else {
-            return response()->json(array('message' => 'Erreur dans l\'enregistrement du membre', 'success' => false, 401));
+            return response()->json(array('message' => 'une erreur est survenue lors de l\'enregistrement des informations personnels, veuillez réessayer', 'success' => false, 401));
         }
     }
 }

@@ -48,3 +48,13 @@ Route::group([
     ], function () {
     });
 });
+
+Route::group([
+    'prefix' => 'upload'
+], function () {
+    Route::post('upload-file', 'uploadController@uploadFile');
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+    });
+});

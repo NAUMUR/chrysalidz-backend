@@ -39,6 +39,6 @@ class ProjetController extends Controller
         return response()->json($projet);
     }
 
-
+    
 
 }
