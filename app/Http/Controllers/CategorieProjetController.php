@@ -7,79 +7,35 @@ use Illuminate\Http\Request;
 
 class CategorieProjetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function listeCategorieProjet() {
+        $categorie = categorieProjet::all();
+        return response()->json($categorie);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function addCategorie(Request $request) {
+
+        $categorie = new categorieProjet();
+        $categorie->libelle = $request->libelle;
+        $categorie->save();
+
+        return response()->json(array('message' => 'categorie ajoutée avec succes ', 'success' => true, 200));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function updateCategorie(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\categorieProjet  $categorieProjet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(categorieProjet $categorieProjet)
-    {
-        //
-    }
+        $categorie = categorieProjet::find($request->id);
+        $categorie->libelle = $request->libelle;
+        $categorie->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\categorieProjet  $categorieProjet
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(categorieProjet $categorieProjet)
-    {
-        //
+        return response()->json(array('message' => 'categorie mise a jour avec succes ', 'success' => true, 200));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\categorieProjet  $categorieProjet
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, categorieProjet $categorieProjet)
+    public function deleteCategorie(Request $request)
     {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\categorieProjet  $categorieProjet
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(categorieProjet $categorieProjet)
-    {
-        //
+        $categorie = categorieProjet::find($request->id);
+        $categorie->delete();
+
+        return response()->json(array('message' => 'categorie supprimée avec succes ', 'success' => true, 200));
     }
 }

@@ -58,3 +58,16 @@ Route::group([
     ], function () {
     });
 });
+
+Route::group([
+    'prefix' => 'categorie'
+], function () {
+    Route::get('liste-categorie-projet', 'CategorieProjetController@listeCategorieProjet');
+    Route::post('add-categorie-projet', 'CategorieProjetController@addCategorieProjet');
+    Route::post('update-categorie-projet', 'CategorieProjetController@updateCategorie');
+    Route::post('delete-categorie-projet', 'CategorieProjetController@deleteCategorie');
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+    });
+});
