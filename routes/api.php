@@ -39,6 +39,16 @@ Route::group([
 });
 
 Route::group([
+    'prefix' => 'projets'
+], function () {
+    Route::get('list-projet/{limit}', 'ProjetController@listProjet');
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+    });
+});
+
+Route::group([
     'prefix' => 'vote'
 ], function () {
     Route::post('vote-projet', 'VoteController@voteProjet');
@@ -57,6 +67,14 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
     });
+});
+
+Route::group([
+    'prefix' => 'dashboard'
+], function () {
+    Route::post('publier-projet', 'ProjetController@publierProjet');
+    Route::post('edite-projet', 'ProjetController@editerProjet');
+    Route::get('liste-projet-publier', 'ProjetController@listeProjetPublier');
 });
 
 Route::group([

@@ -37,7 +37,7 @@ class MembreController extends Controller
             $projet->denomination  = $request->denomination;
             $projet->description  = $request->description;
             $projet->montant_projet  = $request->montant_projet;
-            $projet->publié  = false;
+            $projet->publie  = false;
             $projet->save();
             if ($projet->save()) {
                 $projet_id = $projet->getKey();
@@ -46,7 +46,7 @@ class MembreController extends Controller
                 $ressource->projet_id = $projet_id;
                 $ressource->type_ressource_id = $request->type_ressource_id;
                 $ressource->denomination = $request->denomination;
-                $ressource->path = $request->path;
+                $ressource->path = "null";
                 $ressource->save();
 
                 $soumission = new soumission();
