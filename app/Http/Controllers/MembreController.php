@@ -29,6 +29,7 @@ class MembreController extends Controller
         $membre->code_postal_siege = $request->code_postal_siege;
         $membre->ville = $request->ville;
         $membre->save();
+        // membre
         if ($membre->save()){
             $membre_id = $membre->getKey();
             // creation du projet initier par le membre
